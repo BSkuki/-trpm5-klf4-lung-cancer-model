@@ -1,0 +1,16 @@
+Ligand,Receptor,Category,Evidence_Level,References,Evidence_Level_Description
+ACh (CHAT),nAChR α3 (CHRNA3),Cholinergic,2,Hollenhorst 2023 (tuft ACh); Tsai 2006 (nicotine→basal ERK),Expression-supported
+ACh (CHAT),nAChR α5 (CHRNA5),Cholinergic,1,CHRNA5 GWAS locus for lung cancer risk,Hypothetical
+ACh (CHAT),nAChR α7 (CHRNA7),Cholinergic,2,Shlepova 2023 (α7→KLF4 regulation shown in epidermoid Ca),Expression-supported
+ACh (CHAT),mAChR M3 (CHRM3),Cholinergic,1,mAChR→Ca2+ signaling in airway epithelium,Hypothetical
+ATP (PANX1),P2X4 (P2RX4),Purinergic,2,Abdel Wadood 2025 (tuft TRPM5-dependent ATP release); P2RX4 on basal cells,Expression-supported
+ATP (PANX1),P2Y2 (P2RY2),Purinergic,2,P2Y2→Ca2+; widely expressed in airway epithelium,Expression-supported
+EGF (EGF),EGFR (EGFR),Growth Factor,2,Shaykhiev 2017 (smoking→EGF→basal squamous); tuft EGF expression uncertain,Expression-supported
+BTC (BTC),EGFR/ERBB2 (EGFR),Growth Factor,1,Betacellulin as EGFR ligand; tuft expression in mouse,Hypothetical
+CysLTs (LTC4S/ALOX5),CYSLTR1,Eicosanoid,1,Ualiyeva 2020 (tuft LTs); CYSLTR1 variable on basal,Hypothetical
+PGE2 (PTGS2),EP2 (PTGER2),Prostaglandin,1,COX-2 in tuft cells; PGE2→EP2 on basal promotes proliferation,Hypothetical
+DLL1 (DLL1),NOTCH1/2/3,Notch,1,Notch critical for basal cell fate; tuft DLL1 uncertain,Hypothetical
+WNT5A (WNT5A),FZD2/6,Wnt,1,Non-canonical Wnt in airway; spatial patterning,Hypothetical
+IL-25 (IL25),IL17RB,Immune,0,IL17RB NOT on basal cells; tuft→ILC2 communication only [NEGATIVE CTRL],Unsupported (negative control)
+TSLP (TSLP),TSLPR/IL7R,Immune,0,TSLP→DC/ILC2 in asthma; NOT basal cell [NEGATIVE CTRL],Unsupported (negative control)
+Substance P,TACR1,Neurogenic,1,Neurogenic inflammation; tuft cell ACh co-release?,Hypothetical

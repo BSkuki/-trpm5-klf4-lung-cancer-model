@@ -1,0 +1,15 @@
+# Claude internal directories
+.claude/
+.cc-*/
+.claude-exe-fix/
+
+# Superpowers skills (separate repo)
+skills/
+
+# Large data files
+scrna_analysis/data/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
