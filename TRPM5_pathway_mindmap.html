@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRPM5→ACh→nAChR→KLF4→Hillock→LUSC 研究路线图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0d1117; color: #c9d1d9; font-family: -apple-system, 'Microsoft YaHei', sans-serif; padding: 24px; }
+  h1 { text-align: center; font-size: 22px; margin-bottom: 8px; color: #58a6ff; }
+  .subtitle { text-align: center; font-size: 13px; color: #8b949e; margin-bottom: 32px; }
+
+  .axis { display: flex; flex-direction: column; gap: 0; max-width: 1100px; margin: 0 auto; }
+
+  .step { display: flex; align-items: stretch; gap: 0; min-height: 160px; }
+  .step-arrow { display: flex; justify-content: center; padding: 4px 0; }
+  .step-arrow svg { width: 24px; height: 32px; }
+
+  .step-number {
+    width: 64px; min-width: 64px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: #161b22; border-right: 2px solid #30363d;
+    font-size: 28px; font-weight: 800; color: #58a6ff;
+    border-radius: 8px 0 0 8px;
+  }
+  .step-number small { font-size: 10px; color: #8b949e; margin-top: 2px; }
+
+  .step-body { flex: 1; background: #161b22; padding: 16px 20px; border-radius: 0 8px 8px 0; display: flex; gap: 16px; }
+  .step-main { flex: 1; }
+  .step-title { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .step-mech { font-size: 12px; color: #8b949e; margin-bottom: 10px; line-height: 1.5; }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .badge-done { background: #1a3d2e; color: #3fb950; border: 1px solid #238636; }
+  .badge-partial { background: #3d3510; color: #d29922; border: 1px solid #9e6a03; }
+  .badge-gap { background: #3d1a1a; color: #f85149; border: 1px solid #da3633; }
+
+  .file-ref { font-size: 11px; color: #58a6ff; font-family: 'Consolas', monospace; margin-top: 4px; }
+
+  .step-future { width: 260px; min-width: 260px; border-left: 1px solid #30363d; padding-left: 14px; }
+  .step-future h4 { font-size: 11px; color: #d29922; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .step-future li { font-size: 11px; color: #8b949e; margin-bottom: 3px; line-height: 1.4; }
+  .step-future ul { list-style: none; padding: 0; }
+  .step-future li::before { content: '○ '; color: #d29922; }
+
+  .legend { display: flex; justify-content: center; gap: 20px; margin: 28px 0 16px; font-size: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  .summary-box { max-width: 1100px; margin: 24px auto; background: #161b22; border-radius: 8px; padding: 20px 24px; border: 1px solid #30363d; }
+  .summary-box h3 { font-size: 14px; color: #58a6ff; margin-bottom: 10px; }
+  .summary-box table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .summary-box th { text-align: left; padding: 6px 8px; border-bottom: 1px solid #30363d; color: #8b949e; }
+  .summary-box td { padding: 6px 8px; border-bottom: 1px solid #21262d; }
+
+  .step-accent-1 { border-left: 3px solid #58a6ff; }
+  .step-accent-2 { border-left: 3px solid #79c0ff; }
+  .step-accent-3 { border-left: 3px solid #a5d6ff; }
+  .step-accent-4 { border-left: 3px solid #d2a8ff; }
+  .step-accent-5 { border-left: 3px solid #ff7b72; }
+  .step-accent-6 { border-left: 3px solid #f85149; }
+</style>
+</head>
+<body>
+
+<h1>TRPM5 → ACh → nAChR → KLF4 → 山丘细胞 → 肺鳞癌</h1>
+<div class="subtitle">刷细胞-基底细胞通讯驱动鳞状化生的分子轴 · 研究路线图</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#3fb950"></div> 已完成</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#d29922"></div> 部分完成</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f85149"></div> 待完成</div>
+</div>
+
+<div class="axis">
+
+<!-- Step 1: TRPM5 in Tuft -->
+<div class="step step-accent-1">
+  <div class="step-number">1<small>刷细胞</small></div>
+  <div class="step-body">
+    <div class="step-main">
+      <div class="step-title">TRPM5 通道激活 (Tuft/Brush Cell)</div>
+      <div class="step-mech">Ca²⁺内流 → TRPM5开放 → Na⁺内流 → 去极化 → 动作电位 → 神经递质释放<br>关键证据：TRPM5 是刷细胞定义性标志物 (Ullrich 2005, Hofmann PNAS)</div>
+      <div class="badge-row">
+        <span class="badge badge-done">ODE参数校准 (Ullrich Ca-EC50=0.7μM, Hill=2.8)</span>
+        <span class="badge badge-done">脱敏/恢复模块 (k_desens=0.05, k_recovery=0.01)</span>
+        <span class="badge badge-done">文献支撑 (Hollenhorst 2023 tuft ACh)</span>
+        <span class="badge badge-gap">单细胞数据缺失 (刷细胞稀少无法检出)</span>
+      </div>
+      <div class="file-ref">📄 cell_model/model_params.py (L12-21) · cell_model/cell2.py · TRPM5-KLF4-研究假说评估报告.md §2.1</div>
+    </div>
+    <div class="step-future">
+      <h4>⟳ 下一步</h4>
+      <ul>
+        <li>TRPM5-KO 小鼠scRNA-seq公开数据挖掘 (GEO搜索Trpm5-cre)</li>
+        <li>电生理模型细化：TRPM5→V_m→VGCC 耦合定量</li>
+        <li>CPTAC: TRPM5蛋白在LUSC中是否高表达</li>
+        <li>PIP2调控模块纳入ODE</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="step-arrow">
+  <svg viewBox="0 0 24 32"><defs><marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#30363d"/></marker></defs><line x1="12" y1="0" x2="12" y2="28" stroke="#30363d" stroke-width="2" marker-end="url(#arr)"/></svg>
+</div>
+
+<!-- Step 2: ACh Synthesis -->
+<div class="step step-accent-2">
+  <div class="step-number">2<small>递质</small></div>
+  <div class="step-body">
+    <div class="step-main">
+      <div class="step-title">乙酰胆碱合成与释放 (CHAT / VAChT)</div>
+      <div class="step-mech">CHAT 合成 ACh → VAChT 装载突触囊泡 → TRPM5去极化触发胞吐<br>关键证据：Hollenhorst 2023 首次证明刷细胞是气道ACh来源</div>
+      <div class="badge-row">
+        <span class="badge badge-done">Omnipath: CHAT定义为tuft配体 (LigRecExtra)</span>
+        <span class="badge badge-done">15对LR表中4对为胆碱能通路</span>
+        <span class="badge badge-gap">CHAT蛋白在人气道刷细胞表达未直接验证</span>
+        <span class="badge badge-gap">ACh释放量-去极化频率定量关系未知</span>
+      </div>
+      <div class="file-ref">📄 scrna_analysis/tuft_basal_lr_table.csv (L2-5) · omnipath_lr_analysis.py</div>
+    </div>
+    <div class="step-future">
+      <h4>⟳ 下一步</h4>
+      <ul>
+        <li>人气道活检组织CHAT免疫组化共染TRPM5</li>
+        <li>刷细胞ACh释放定量 (碳纤维电极或ACh传感器)</li>
+        <li>VAChT抑制剂体外实验阻断模型</li>
+        <li>文献系统性回顾：CHAT+上皮细胞跨物种比较</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="step-arrow">
+  <svg viewBox="0 0 24 32"><line x1="12" y1="0" x2="12" y2="28" stroke="#30363d" stroke-width="2" marker-end="url(#arr)"/></svg>
+</div>
+
+<!-- Step 3: nAChR -->
+<div class="step step-accent-3">
+  <div class="step-number">3<small>受体</small></div>
+  <div class="step-body">
+    <div class="step-main">
+      <div class="step-title">nAChR 激活 (基底细胞 CHRNA3/5/7)</div>
+      <div class="step-mech">ACh结合nAChR → Na⁺/Ca²⁺内流 → MAPK/ERK → 转录重编程<br>关键证据：CHRNA5 GWAS肺鳞癌风险位点; CHRNA7→KLF4 (Shlepova 2023)</div>
+      <div class="badge-row">
+        <span class="badge badge-done">GSE193816: CHRNA5在Cycle Basal 10.5%阳性</span>
+        <span class="badge badge-done">GSE193816: CHRNA7在Basal 2.4%阳性</span>
+        <span class="badge badge-done">Omnipath: 4条胆碱能LR对表达-支持</span>
+        <span class="badge badge-gap">nAChR→KLF4直接调控未实验验证</span>
+      </div>
+      <div class="file-ref">📄 scrna_analysis/scrna_final_analysis.py · lr_scores_scRNA.csv · tuft_basal_lr_table.csv</div>
+    </div>
+    <div class="step-future">
+      <h4>⟳ 下一步</h4>
+      <ul>
+        <li>烟碱/尼古丁刺激原代基底细胞→qPCR测KLF4</li>
+        <li>CHRNA3/5/7 siRNA敲低→KLF4/KRT13变化</li>
+        <li>nAChR亚型选择性拮抗剂 (α-BTX, mecamylamine)</li>
+        <li>SCENIC/Dorothea: nAChR下游转录因子推断</li>
+        <li>CHRNA5 eQTL在LUSC中的效应分析</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="step-arrow">
+  <svg viewBox="0 0 24 32"><line x1="12" y1="0" x2="12" y2="28" stroke="#30363d" stroke-width="2" marker-end="url(#arr)"/></svg>
+</div>
+
+<!-- Step 4: KLF4 -->
+<div class="step step-accent-4">
+  <div class="step-number">4<small>转录</small></div>
+  <div class="step-body">
+    <div class="step-main">
+      <div class="step-title">KLF4 上调 (转录因子开关)</div>
+      <div class="step-mech">nAChR→MAPK/ERK→KLF4转录↑ | KLF4正反馈自维持 | HIF1α共激活<br>关键证据：KLF4是鳞状分化主控因子; Hillock定义性TF (Izzo 2025)</div>
+      <div class="badge-row">
+        <span class="badge badge-done">ODE双稳态模型: V_auto=8.0, m_klf4=4.0, 分岔分析</span>
+        <span class="badge badge-done">GSE193816: KLF4 Basal AA=0.537 vs AC=0.159 (p&lt;0.0001)</span>
+        <span class="badge badge-done">HIF正反馈模块纳入ODE (k_hif_klf4=0.5)</span>
+        <span class="badge badge-partial">TCGA: TRPM5-KLF4 mRNA无线性相关 (r=-0.019)</span>
+      </div>
+      <div class="file-ref">📄 cell_model/cell2.py (L23-49) · bifurcationalpoint.py · tcga_analysis/tcga_correlation.py</div>
+    </div>
+    <div class="step-future">
+      <h4>⟳ 下一步</h4>
+      <ul>
+        <li>CPTAC: KLF4蛋白vs磷酸化水平 (mRNA≠蛋白)</li>
+        <li>KLF4 ChIP-seq在气道上皮中的靶基因</li>
+        <li>KLF4降解速率直接测量 (CHX chase in HBEC)</li>
+        <li>参数敏感性全局分析 (Sobol/LHS)</li>
+        <li>吸烟者vs非吸烟者气道上皮KLF4 IHC</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="step-arrow">
+  <svg viewBox="0 0 24 32"><line x1="12" y1="0" x2="12" y2="28" stroke="#30363d" stroke-width="2" marker-end="url(#arr)"/></svg>
+</div>
+
+<!-- Step 5: Hillock -->
+<div class="step step-accent-5">
+  <div class="step-number">5<small>化生</small></div>
+  <div class="step-body">
+    <div class="step-main">
+      <div class="step-title">山丘细胞形成 (KRT13+ Hillock / 鳞状化生)</div>
+      <div class="step-mech">KLF4 → KRT13↑↑ | 基底细胞脱离正常分化 → 鳞状前体 → 复层鳞状上皮<br>关键证据：Hillock KRT13 97.6%+, KLF4 45.5%+, FC=66.5x</div>
+      <div class="badge-row">
+        <span class="badge badge-done">GSE193816: Hillock亚群573个细胞完整表征</span>
+        <span class="badge badge-done">KLF4-KRT13 Spearman相关在Hillock内验证</span>
+        <span class="badge badge-done">ODE下游: k_krt13=0.4, k_deg_krt13=0.05</span>
+        <span class="badge badge-gap">Hillock→LUSC恶性转化实验证据缺失</span>
+      </div>
+      <div class="file-ref">📄 scrna_analysis/scrna_final_analysis.py · scRNA_final_analysis.png · cell_model/model_params.py (L97-98)</div>
+    </div>
+    <div class="step-future">
+      <h4>⟳ 下一步</h4>
+      <ul>
+        <li>谱系追踪: Hillock cells是否直接转化为LUSC (小鼠模型)</li>
+        <li>吸烟者气道活检Hillock负荷定量</li>
+        <li>KRT13在LUSC旁癌组织空间分布 (空间转录组)</li>
+        <li>Hillock→Basal恶性转化的临界突变谱</li>
+        <li>过敏原诱导Hillock的KLF4依赖机制</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="step-arrow">
+  <svg viewBox="0 0 24 32"><line x1="12" y1="0" x2="12" y2="28" stroke="#30363d" stroke-width="2" marker-end="url(#arr)"/></svg>
+</div>
+
+<!-- Step 6: LUSC -->
+<div class="step step-accent-6">
+  <div class="step-number">6<small>癌症</small></div>
+  <div class="step-body">
+    <div class="step-main">
+      <div class="step-title">肺鳞状细胞癌 (LUSC)</div>
+      <div class="step-mech">KRT13+化生上皮 + 吸烟致突变 → TP53/PIK3CA突变 → 侵袭性癌<br>关键证据：LUSC高表达鳞状标志; 吸烟→EGF→基底鳞状 (Shaykhiev 2017)</div>
+      <div class="badge-row">
+        <span class="badge badge-done">TCGA: TRPM5-KLF4在LUSC mRNA无线性相关</span>
+        <span class="badge badge-done">TCGA: 含KRT13, POU2F3, SOX2, TP63等8基因面板</span>
+        <span class="badge badge-gap">无蛋白质组/磷酸化组验证</span>
+        <span class="badge badge-gap">无体内动物模型</span>
+      </div>
+      <div class="file-ref">📄 tcga_analysis/tcga_correlation.py · trpm5_klf4_correlation.png</div>
+    </div>
+    <div class="step-future">
+      <h4>⟳ 下一步</h4>
+      <ul>
+        <li>CPTAC LUSC蛋白质组验证全轴蛋白表达</li>
+        <li>生存分析: KLF4/KRT13高表达vs预后</li>
+        <li>TRPM5-KO小鼠+吸烟致癌模型 (长期)</li>
+        <li>人LUSC组织芯片: TRPM5→KRT13空间梯度</li>
+        <li>甲基化/突变: KLF4在LUSC中的失活模式</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- .axis -->
+
+<!-- Summary table -->
+<div class="summary-box">
+  <h3>📊 证据缺口矩阵</h3>
+  <table>
+    <tr><th>步骤</th><th>计算/数据库</th><th>体外实验</th><th>体内动物</th><th>人体组织</th><th>整体评分</th></tr>
+    <tr>
+      <td>1. TRPM5</td>
+      <td style="color:#3fb950">✓ ODE+文献</td>
+      <td style="color:#f85149">✗ 电生理</td>
+      <td style="color:#f85149">✗ KO模型</td>
+      <td style="color:#d29922">△ IHC</td>
+      <td>40%</td>
+    </tr>
+    <tr>
+      <td>2. ACh</td>
+      <td style="color:#3fb950">✓ Omnipath</td>
+      <td style="color:#f85149">✗ 释放测定</td>
+      <td style="color:#f85149">✗ CHAT-KO</td>
+      <td style="color:#f85149">✗ 共染色</td>
+      <td>25%</td>
+    </tr>
+    <tr>
+      <td>3. nAChR</td>
+      <td style="color:#3fb950">✓ scRNA+Omnipath</td>
+      <td style="color:#f85149">✗ 尼古丁刺激</td>
+      <td style="color:#f85149">✗ 条件KO</td>
+      <td style="color:#d29922">△ GWAS</td>
+      <td>35%</td>
+    </tr>
+    <tr>
+      <td>4. KLF4</td>
+      <td style="color:#3fb950">✓ ODE+TCGA+scRNA</td>
+      <td style="color:#f85149">✗ 降解/定位</td>
+      <td style="color:#f85149">✗ 谱系追踪</td>
+      <td style="color:#d29922">△ 相关性</td>
+      <td>40%</td>
+    </tr>
+    <tr>
+      <td>5. Hillock</td>
+      <td style="color:#3fb950">✓ scRNA验证</td>
+      <td style="color:#f85149">✗ 类器官</td>
+      <td style="color:#f85149">✗ 谱系追踪</td>
+      <td style="color:#f85149">✗ 活检定量</td>
+      <td>25%</td>
+    </tr>
+    <tr>
+      <td>6. LUSC</td>
+      <td style="color:#d29922">△ TCGA mRNA</td>
+      <td style="color:#f85149">✗ 永生化</td>
+      <td style="color:#f85149">✗ 致癌模型</td>
+      <td style="color:#d29922">△ 组织芯片</td>
+      <td>15%</td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>
